@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ClientManagementApp.Models.Client>
+
+<h2>Ügyfelek listája</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Ügyfél neve</th>
+            <th>Ügyfél műveletek</th>
+            <th>JSON Generálás</th>
+            <th>Címek</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@client.Name
+                <td>
+                    <a asp-action="Edit" asp-route-id="@client.Id" class="btn btn-outline-success btn-sm">Ügyfélnév Módosítása</a>
+                    <a asp-action="Delete" asp-route-id="@client.Id" class="btn btn-outline-danger btn-sm">Ügyfél Törlése</a>
+                </td></td>
+                <td>@(client.IsJsonGenerated ? "Igen" : "Nem")</td>
+                <td>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Típus</th>
+                                <th>Ország</th>
+                                <th>Irányítószám</th>
+                                <th>Város</th>
+                                <th>Utca</th>
+                                <th>Házszám</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var address in client.Addresses)
+                            {
+                                <tr>
+                                    <td>@address.Type</td>
+                                    <td>@address.Country</td>
+                                    <td>@address.ZipCode</td>
+                                    <td>@address.City</td>
+                                    <td>@address.Street</td>
+                                    <td>@address.HouseNumber</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6">
+                                        <a asp-controller="Address" asp-action="Edit" asp-route-id="@address.Id" class="btn btn-outline-success btn-sm">Cím módosítása</a>
+                                        <a asp-controller="Address" asp-action="Delete" asp-route-id="@address.Id" class="btn btn-outline-danger btn-sm">Cím törlése</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-outline-primary mt-3">Új ügyfél felvétele</a>
+<a asp-controller="Address" asp-action="Create" class="btn btn-outline-primary mt-3">Új cím hozzáadása</a>

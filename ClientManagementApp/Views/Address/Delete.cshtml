@@ -1,0 +1,21 @@
+﻿@model ClientManagementApp.Models.Address
+
+<h2>Cím törlése</h2>
+
+<p>Biztosan törölni szeretné az alábbi címet?</p>
+
+<div>
+    <p><strong>Ügyfél:</strong> @Model.Client.Name</p>
+    <p><strong>Típus:</strong> @Model.Type</p>
+    <p><strong>Ország:</strong> @Model.Country</p>
+    <p><strong>Irányítószám:</strong> @Model.ZipCode</p>
+    <p><strong>Város:</strong> @Model.City</p>
+    <p><strong>Utca:</strong> @Model.Street</p>
+    <p><strong>Házszám:</strong> @Model.HouseNumber</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-outline-danger">Törlés</button>
+    <a asp-action="Index" asp-controller="Client" class="btn btn-outline-secondary">Mégse</a>
+</form>

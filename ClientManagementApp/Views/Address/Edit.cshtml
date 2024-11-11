@@ -1,0 +1,55 @@
+﻿@model ClientManagementApp.Models.Address
+
+<h2>Cím módosítása</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ClientId" /> 
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+
+
+    <div>
+        <label>Típus</label>
+        <select asp-for="Type" class="form-select" required>
+            <option value="Szállítási" selected="@(Model.Type == AddressType.Szállítási)">Szállítási</option>
+            <option value="Számlázási" selected="@(Model.Type == AddressType.Számlázási)">Számlázási</option>
+            <option value="Egyéb" selected="@(Model.Type == AddressType.Egyéb)">Egyéb</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Ország</label>
+        <input asp-for="Country" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Irányítószám</label>
+        <input asp-for="ZipCode" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Város</label>
+        <input asp-for="City" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Utca</label>
+        <input asp-for="Street" class="form-control" required />
+    </div>
+
+    <div>
+        <label>Házszám</label>
+        <input asp-for="HouseNumber" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-outline-success mt-3">Módosítás</button>
+    <a asp-action="Index" asp-controller="Client" class="btn btn-outline-secondary mt-3">Mégse</a>
+</form>

@@ -1,0 +1,11 @@
+﻿@model ClientManagementApp.Models.Client
+
+<h2>Ügyfél törlése</h2>
+
+<p>Biztosan törölni szeretné az ügyfelet: <strong>@Model.Name</strong>?(A hozzá tartozó címek is törlődni fognak!)</p>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-outline-danger">Törlés</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">Mégse</a>
+</form>

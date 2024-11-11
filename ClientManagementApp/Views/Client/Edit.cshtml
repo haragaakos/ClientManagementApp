@@ -1,0 +1,14 @@
+﻿@model ClientManagementApp.Models.Client
+
+<h2>Ügyfélnév módosítása</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label>Név</label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-outline-success mt-3">Módosítás</button>
+    <a asp-action="Index" asp-controller="Client" class="btn btn-outline-secondary mt-3">Mégse</a>
+</form>
+

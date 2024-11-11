@@ -1,0 +1,13 @@
+﻿@model ClientManagementApp.Models.Client
+
+<h2>Új ügyfél felvétele</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Név</label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-outline-primary mt-3">Rögzítés</button>
+    <a asp-action="Index" asp-controller="Client" class="btn btn-outline-secondary mt-3">Mégse</a>
+</form>
+
